@@ -7,7 +7,7 @@
 from __future__ import print_function
 import requests, gevent, time, getpass
 from bs4 import BeautifulSoup
-
+from gevent.threadpool import ThreadPool
 
 class Syllabus():
     def __init__(self, username, password, pole_id, choice):
@@ -45,7 +45,6 @@ class Syllabus():
 
     def _vote(self, pid):
         while not self._voted:
-            print("[t%d] Sent vote"%(pid), time.ctime())
             url = "https://elearning.cmu.ac.th/mod/choice/view.php"
             data = {"answer": self.choice_id, "sesskey": self.sesskey, "id": self.pole_id }
             response = self.session.post(url, data=data)
@@ -56,10 +55,10 @@ class Syllabus():
 
     def vote(self):
         self._voted = False
-        from gevent.pool import Pool
-        p = Pool(10)
-        p.map(self._vote, xrange(0,5))
-        p.join()
+        pool = ThreadPool(3)
+        for _ in range(4):
+            pool.spawn(self._vote, _)
+        gevent.wait()
         if self._voted:
             self.vote = True
             print("[+] Vote Success", time.ctime())
