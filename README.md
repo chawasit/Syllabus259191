@@ -2,7 +2,7 @@
 [ENG CMU 259191](https://elearning.cmu.ac.th/course/view.php?id=552)
 
 ## How to use
-โหลดไฟล์ exe จากใน dist ได้เลยสำหรับ windows
+โหลดไฟล์ exe จากในแถบ release ได้เลยสำหรับ windows
 
 หากใช้ linux, mac ให้โหลด Syllabus.py ไปเก็บไว้
 ให้ลง module ก่อน 
