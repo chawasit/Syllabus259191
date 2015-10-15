@@ -5,9 +5,11 @@
 โหลดไฟล์ exe จากในแถบ release ได้เลยสำหรับ windows
 
 หากใช้ linux, mac ให้โหลด Syllabus.py ไปเก็บไว้
-ให้ลง module ก่อน 
+ให้ลง module นี้ก่อน โดนใช้ python pip หรือื่น ๆ
 ```
-requests, gevent, BeautifulSoup4 ก่อน
+requests
+gevent
+BeautifulSoup4
 ```
 การใช้งาน เปิด terminal ขึ้นหาไปที่ path ที่เก็บ Syllabus.py ไว้
 ```
