@@ -14,16 +14,16 @@ requests, gevent, BeautifulSoup4 ก่อน
 $ python Syllabus.py
 ```
 
-Pole id หาได้จาก url ของกิจกรรมที่จะเข้า หน้าตาแบบนี้
+Poll id หาได้จาก url ของกิจกรรมที่จะเข้า หน้าตาแบบนี้
 ```
-    https://elearning.cmu.ac.th/mod/choice/view.php?id=[Pole id]
+    https://elearning.cmu.ac.th/mod/choice/view.php?id=[Poll id]
 ```
 
 ตัวอย่าง
 ``` 
     https://elearning.cmu.ac.th/mod/choice/view.php?id=24482 
 ```
-Pole id คือ 24482
+Poll id คือ 24482
 
 Choice ปรกติเป็น 1 และ 2 เป็นไม่เข้าร่วม ยกเว้นบางกิจกรรมที่มีหลายรอบ
 

@@ -10,11 +10,11 @@ from bs4 import BeautifulSoup
 from gevent.threadpool import ThreadPool
 
 class Syllabus():
-    def __init__(self, username, password, pole_id):
+    def __init__(self, username, password, poll_id):
         # Input
         self.username = username
         self.password = password
-        self.pole_id = pole_id
+        self.poll_id = poll_id
         self.choice = None
         #flag&data
         self.voted = False
@@ -28,7 +28,7 @@ class Syllabus():
             raise ValueError
 
     def _get_data(self):
-        url = "https://elearning.cmu.ac.th/mod/choice/view.php?id=%s" % (self.pole_id, )
+        url = "https://elearning.cmu.ac.th/mod/choice/view.php?id=%s" % (self.poll_id, )
         try:
             response = self.session.get(url, timeout=3)
         except:
@@ -55,7 +55,7 @@ class Syllabus():
     def _vote(self, pid):
         while not self._voted:
             url = "https://elearning.cmu.ac.th/mod/choice/view.php"
-            data = {"answer": self.choice_id, "sesskey": self.sesskey, "id": self.pole_id }
+            data = {"answer": self.choice_id, "sesskey": self.sesskey, "id": self.poll_id }
             try:
                 response = self.session.post(url, data=data, timeout=3)
             except:
@@ -91,7 +91,7 @@ class Syllabus():
             print("[+] Vote Success", time.ctime())
 
     def unvote(self):
-        url = "https://elearning.cmu.ac.th/mod/choice/view.php?id=%s&action=delchoice&sesskey=%s" % (self.pole_id, self.sesskey)
+        url = "https://elearning.cmu.ac.th/mod/choice/view.php?id=%s&action=delchoice&sesskey=%s" % (self.poll_id, self.sesskey)
         try:
             response = self.session.get(url, timeout=3)
         except:
@@ -117,9 +117,9 @@ def init():
     while True:
         username = raw_input("[?] Username (xxx@cmu.ac.th): ")
         password = getpass.getpass("[?] Password: ")
-        pole_id = raw_input("[?] Pole id: ")
+        poll_id = raw_input("[?] poll id: ")
         try:
-            s = Syllabus(username, password, pole_id)
+            s = Syllabus(username, password, poll_id)
             print("[+] Logged in")
         except:
             print("[!] ERROR Please check your input.")
@@ -132,8 +132,8 @@ if __name__ == "__main__":
     print("#     Syllabus259191     #")
     print("##########################")
     s = init()
-    print("[+] Please check ! Your pole url is: \n \
-            https://elearning.cmu.ac.th/mod/choice/view.php?id=%s"%(s.pole_id,))
+    print("[+] Please check ! Your poll url is: \n \
+            https://elearning.cmu.ac.th/mod/choice/view.php?id=%s"%(s.poll_id,))
     s.set_choice(get_choice())
     try:
         command = [s.vote, s.unvote, s.status]
