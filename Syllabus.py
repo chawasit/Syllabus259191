@@ -71,6 +71,8 @@ class Syllabus():
         while True:
             try:
                 self.sesskey, self.choice_id, self.voted = self._get_data()
+                assert self.sesskey is not None \
+                    and self.choice_id is not None
             except:
                 pass
             else:
